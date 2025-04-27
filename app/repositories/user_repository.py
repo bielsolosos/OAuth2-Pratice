@@ -38,6 +38,7 @@ def get_all_users_repository(db: Session):
 def create_user_repository(db: Session, user_data: dict):
     try:
         db_user = User(**user_data)
+        db_user.set_password(user_data["password"])
         db.add(db_user)
         db.commit()
         return db_user

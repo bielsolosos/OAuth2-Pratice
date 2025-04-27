@@ -12,7 +12,10 @@ class UserBase(BaseModel):
 
 # Herda a Classe base e é usada para a validação de entrada, como posts por exemplo
 class UserCreate(UserBase):
-    pass
+    password: str  # Adicionando a senha aqui
+
+    class Config:
+        orm_mode = True
 
 
 class User(UserBase):
