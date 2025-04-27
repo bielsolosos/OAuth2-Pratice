@@ -1,0 +1,54 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.sqlite3
+*.db
+
+# Python virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# IDEs
+.vscode/
+.idea/
+
+# FastAPI (para evitar a pasta de cache do Pydantic ou outros artefatos específicos)
+*.log
+*.pot
+*.mo
+
+# Pytest
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Docker
+.docker/
+
+# Coverage reports
+.coverage
+coverage/
+
+# Env files (ex: secrets)
+*.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Static files (se houver)
+static/
