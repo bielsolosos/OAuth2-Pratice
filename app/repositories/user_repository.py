@@ -18,6 +18,19 @@ def get_user_repository(db: Session, user_id: UUID):
         raise HTTPException(status_code=500, detail="An unexpected error occurred.")
 
 
+def get_user_by_email_repository(db: Session, user_email: str):
+    try:
+        user = db.query(User).filter(User.email == user_email).first()
+
+        if user is None:
+            raise HTTPException(status_code=404, detail="User not found.")
+
+        return user
+    except Exception as e:
+        # Lança uma exceção HTTP para erros inesperados
+        raise HTTPException(status_code=500, detail="An unexpected error occurred")
+
+
 def get_all_users_repository(db: Session):
     return db.query(User).all()
 
@@ -25,6 +38,7 @@ def get_all_users_repository(db: Session):
 def create_user_repository(db: Session, user_data: dict):
     try:
         db_user = User(**user_data)
+        db_user.set_password(user_data["password"])
         db.add(db_user)
         db.commit()
         return db_user
