@@ -20,7 +20,7 @@ def get_user_repository(db: Session, user_id: UUID):
 
 def get_user_by_email_repository(db: Session, user_email: str):
     try:
-        user = db.query(User).filter(User.id == user_email).first()
+        user = db.query(User).filter(User.email == user_email).first()
 
         if user is None:
             raise HTTPException(status_code=404, detail="User not found.")
