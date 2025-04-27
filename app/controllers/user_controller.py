@@ -14,7 +14,7 @@ from sqlalchemy.dialects.postgresql import UUID
 router = APIRouter()
 
 
-@router.get("/", response_model=List[User])
+@router.get("", response_model=List[User])
 def get_all_users(db: Session = Depends(get_db)):
     return get_all_users_repository(db)
 
@@ -24,7 +24,7 @@ def get_user(user_id, db: Session = Depends(get_db)):
     return get_user_service(db, user_id)
 
 
-@router.post("/", response_model=User)
+@router.post("", response_model=User)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return create_user_service(db, user)
 

@@ -14,6 +14,7 @@ DATABASE_HOST = os.getenv("DATABASE_HOST", "127.0.0.1")  # Valor padrão se não
 DATABASE_PORT = os.getenv("DATABASE_PORT", 5432)  # Valor padrão se não definir
 DATABASE_NAME = os.getenv("DATABASE_NAME", "python-api")
 
+
 # Construa a URL de conexão para o PostgreSQL
 DATABASE_URL = f"postgresql://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}"
 
