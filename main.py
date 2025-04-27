@@ -4,7 +4,9 @@ import app.controllers.home_controller as home_controller
 import app.controllers.user_controller as user_controller
 import os
 
-app = FastAPI()
+app = FastAPI(
+    title="OAuth-pratice"
+)
 # Conectar e criar as tabelas no banco de dados
 Base.metadata.create_all(bind=engine)
 
