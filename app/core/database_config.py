@@ -31,6 +31,7 @@ from app.core.database_config import SessionLocal
 
 # Função que cria e retorna uma sessão de banco de dados
 def get_db():
+    """Retorna a instância da sessão do Banco de dados"""
     db = SessionLocal()  # Obtém uma instância da sessão do banco
     try:
         yield db  # Permite que a dependência seja usada
