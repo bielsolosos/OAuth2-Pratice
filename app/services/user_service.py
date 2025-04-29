@@ -12,9 +12,4 @@ def create_user_service(db: Session, user_data: UserCreate):
     return create_user_repository(db, user_data.model_dump())
 
 def delete_user_service(db: Session, user_id: UUID):
-    result = delete_user_repository(db, user_id)
-
-    if result:
-        return {"detail": "User deleted successfully"}
-    else:
-        return {"detail": "Failed to delete user"}
+    delete_user_repository(db, user_id)
