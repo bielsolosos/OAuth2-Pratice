@@ -3,37 +3,26 @@ from sqlalchemy.exc import IntegrityError
 from app.models.user import User
 from sqlalchemy.dialects.postgresql import UUID
 from fastapi import HTTPException
-
+from app.core.execptions import (
+    raise_not_found_exception,
+    raise_bad_request_exception,
+    raise_internal_server_error
+)
 
 def get_user_repository(db: Session, user_id: UUID):
-    try:
-        user = db.query(User).filter(User.id == user_id).first()
-
-        if user is None:
-            raise HTTPException(status_code=404, detail="User not found.")
-
-        return user
-    except Exception as e:
-        # Lança uma exceção HTTP para erros inesperados
-        raise HTTPException(status_code=500, detail="An unexpected error occurred.")
-
+    user = db.query(User).filter(User.id == user_id).first()
+    if user is None:
+        raise_not_found_exception("User not found.")
+    return user
 
 def get_user_by_email_repository(db: Session, user_email: str):
-    try:
-        user = db.query(User).filter(User.email == user_email).first()
-
-        if user is None:
-            raise HTTPException(status_code=404, detail="User not found.")
-
-        return user
-    except Exception as e:
-        # Lança uma exceção HTTP para erros inesperados
-        raise HTTPException(status_code=500, detail="An unexpected error occurred")
-
+    user = db.query(User).filter(User.email == user_email).first()
+    if user is None:
+        raise_not_found_exception("User not found.")
+    return user
 
 def get_all_users_repository(db: Session):
     return db.query(User).all()
-
 
 def create_user_repository(db: Session, user_data: dict):
     try:
@@ -41,22 +30,22 @@ def create_user_repository(db: Session, user_data: dict):
         db_user.set_password(user_data["password"])
         db.add(db_user)
         db.commit()
+        db.refresh(db_user)
         return db_user
-    except IntegrityError as e:
+    except IntegrityError:
         db.rollback()
-        raise HTTPException(
-            status_code=400, detail="Email já cadastrado. Tente um email diferente."
-        )
-
+        raise_bad_request_exception("Email já cadastrado. Tente um email diferente.")
+    except Exception as e:
+        db.rollback()
+        raise_internal_server_error(f"An unexpected error occurred: {str(e)}")
 
 def delete_user_repository(db: Session, user_id: UUID):
-    # Tenta pegar o usuário. Se não existir, lançará a exceção dentro da função.
     user_to_delete = get_user_repository(db, user_id)
 
     try:
-        db.delete(user_to_delete)  # Deleta o usuário
-        db.commit()  # Faz commit da transação
+        db.delete(user_to_delete)
+        db.commit()
         return True
     except Exception as e:
-        db.rollback()  # Caso haja erro, desfaz a transação
-        raise HTTPException(status_code=500, detail="An unexpected error occurred.")
+        db.rollback()
+        raise_internal_server_error(f"An unexpected error occurred: {str(e)}")
