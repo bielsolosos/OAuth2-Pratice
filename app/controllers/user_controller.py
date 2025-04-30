@@ -20,7 +20,7 @@ def get_all_users(db: Session = Depends(get_db)):
     return get_all_users_repository(db)
 
 
-@router.post("", response_model=User)
+@router.post("", response_model=User , status_code=status.HTTP_201_CREATED)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return create_user_service(db, user)
 
