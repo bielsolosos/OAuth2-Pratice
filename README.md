@@ -63,7 +63,10 @@ Este repositório foi criado como uma prática de implementação de autenticaç
 7.  Execute a aplicação:
 ```bash
     uvicorn main:app --reload
-    #Ou utilizar a cli do FastApi
+
+```
+Ou utilizar a cli do fast api
+```bash
     fastapi run dev
 ```
 
@@ -102,4 +105,4 @@ A API estará disponível em [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/
 ----------
 
 Feito com ❤️ por Gabriel (bielsolosos). Em caso de dúvidas, entre em contato pelo LinkedIn ou abra uma issue!
-[Linkedin]: (https://www.linkedin.com/in/gabriel-coutinho-0763922a1/)
+[Linkedin](https://www.linkedin.com/in/gabriel-coutinho-0763922a1/)
