@@ -43,9 +43,9 @@ Este repositório foi criado como uma prática de implementação de autenticaç
 -----------------------
 
 1.  Clone o repositório:
-
+```bash
     git clone https://github.com/bielsolosos/OAuth2-Pratice.git
-
+```
 3.  Crie e ative um ambiente virtual (opcional, mas recomendado):
 
 ```bash
