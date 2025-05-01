@@ -1,5 +1,3 @@
- OAuth2 Practice - Projeto em FastAPI
-
 🔐 OAuth2 Practice - FastAPI + Auth + CRUD
 ==========================================
 
