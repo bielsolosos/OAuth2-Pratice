@@ -48,17 +48,24 @@ Este repositório foi criado como uma prática de implementação de autenticaç
 
 3.  Crie e ative um ambiente virtual (opcional, mas recomendado):
 
+```bash
     python -m venv venv
+    
     source venv/bin/activate  # Linux/macOS
+    
     venv\Scripts\activate     # Windows
+```
 
 5.  Instale as dependências:
-
+```bash
     pip install -r requirements.txt
-
+```
 7.  Execute a aplicação:
-
+```bash
     uvicorn main:app --reload
+    #Ou utilizar a cli do FastApi
+    fastapi run dev
+```
 
 A API estará disponível em [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) (Swagger UI).
 
