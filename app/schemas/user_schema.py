@@ -25,3 +25,7 @@ class User(UserBase):
         orm_mode = (
             True  # Permite que o Pydantic converta modelos SQLAlchemy para esquemas
         )
+
+class UserLogin(BaseModel):
+    email: str
+    password: str

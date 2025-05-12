@@ -19,12 +19,6 @@ router = APIRouter()
 def get_all_users(db: Session = Depends(get_db)):
     return get_all_users_repository(db)
 
-
-@router.post("", response_model=User, status_code=status.HTTP_201_CREATED)
-def get_user(user_id, db: Session = Depends(get_db)):
-    return get_user_service(db, user_id)
-
-
 @router.post("", response_model=User)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return create_user_service(db, user)

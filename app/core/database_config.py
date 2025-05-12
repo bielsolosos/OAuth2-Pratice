@@ -27,7 +27,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 # Base para definir os modelos
 Base = declarative_base()
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session # type: ignore
 from app.core.database_config import SessionLocal
 
 # Função que cria e retorna uma sessão de banco de dados

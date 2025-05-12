@@ -91,6 +91,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
     except JWTError:
         # Em caso de erro na decodificação do token (por exemplo, token inválido)
         raise credentials_exception
+
     except ExpiredSignatureError:
         # Caso a assinatura do token tenha expirado
         raise HTTPException(
@@ -98,6 +99,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
             detail="Token expirado",
             headers={"WWW-Authenticate": "Bearer"},
         )
+
     except Exception as e:
         # Caso outro erro inesperado ocorra
         raise HTTPException(

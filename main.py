@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI # type: ignore
 from app.core.database_config import Base, engine
 import app.controllers.home_controller as home_controller
 import app.controllers.user_controller as user_controller
@@ -19,10 +19,10 @@ app.include_router(auth_controller.router, prefix="/token", tags=["Token"],)
 
 # Esse trecho abaixo é pra quando você rodar localmente (tipo python main.py)
 if __name__ == "__main__":
-    import uvicorn
+    import uvicorn # type: ignore
     uvicorn.run(
         "main:app",
-        host="0.0.0.0",
+        host="127.0.0.1",
         port=int(os.environ.get("PORT", 8000)),
         reload=True
     )
